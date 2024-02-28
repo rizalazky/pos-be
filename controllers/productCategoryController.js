@@ -1,5 +1,5 @@
 const db = require('./../models');  
-const ProductCategory = db.CategoryModel;
+const ProductCategory = db.ProductCategory;
 exports.list = async (req,res,next)=>{
     let data = await ProductCategory.findAll();
     // let data =[]

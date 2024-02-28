@@ -1,5 +1,5 @@
 const db = require('../models');  
-const ProductUnitModel = db.ProductUnitModel;
+const ProductUnitModel = db.ProductUnit;
 exports.list = async (req,res,next)=>{
     let data = await ProductUnitModel.findAll();
     // let data =[]

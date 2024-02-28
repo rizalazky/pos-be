@@ -40,8 +40,4 @@ Object.keys(db).forEach(modelName => {
 db.sequelize = sequelize;
 db.Sequelize = Sequelize;
 
-db.CategoryModel = require('./productcategory')(sequelize, Sequelize);
-db.ProductModel = require('./product')(sequelize, Sequelize);
-db.ProductUnitModel = require('./productunit')(sequelize, Sequelize);
-
 module.exports = db;

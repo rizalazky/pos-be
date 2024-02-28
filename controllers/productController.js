@@ -1,7 +1,22 @@
 const db = require('../models');  
-const ProductModel = db.ProductModel;
+const ProductModel = db.Product;
+const ProductCategoryModel = db.ProductCategory;
+const ProductUnitModel = db.ProductUnit;
+
+ProductModel.sync()
+ProductCategoryModel.sync()
+ProductUnitModel.sync()
+
 exports.list = async (req,res,next)=>{
-    let data = await ProductModel.findAll();
+    let data = await ProductModel.findAll({
+        include : [{
+            model : ProductCategoryModel,
+            required:true
+        },{
+            model : ProductUnitModel,
+            required:true
+        }]
+    });
     // let data =[]
 
     res.json(data)
