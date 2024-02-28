@@ -1,0 +1,45 @@
+const db = require('./../models');  
+const ProductCategory = db.CategoryModel;
+exports.list = async (req,res,next)=>{
+    let data = await ProductCategory.findAll();
+    // let data =[]
+
+    res.json(data)
+}
+
+exports.add = async (req,res,next)=>{
+    let data ={
+        name : req.body.name
+    }
+
+    let createData = await ProductCategory.create(data)
+
+    res.json({
+        status : 'OK',
+        data : createData
+    })
+}
+
+exports.update = async (req,res,next)=>{
+    let id = req.params.id;
+    let data ={
+        name : req.body.name
+    }
+
+    let execQuery = await ProductCategory.update(data,{where : {id : id}});
+
+    res.json({
+        status : 'OK',
+        data : execQuery
+    })
+}
+
+exports.delete = async (req,res,next)=>{
+    let id = req.params.id;
+
+    let execQuery = await ProductCategory.destroy({where :{id :id}});
+    res.json({
+        status : 'OK',
+        data : execQuery
+    })
+}
