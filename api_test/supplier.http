@@ -1,0 +1,26 @@
+GET http://localhost:3000/api/supplier
+content-type: application/json
+
+###
+POST http://localhost:3000/api/supplier
+content-type: application/json
+
+{
+    "supplier_name" : "supplier_name",
+    "phone_number":"082222222222",
+    "address":"address",
+    "description" : "description"
+}
+###
+PUT http://localhost:3000/api/supplier/1
+content-type: application/json
+
+{
+    "supplier_name" : "supplier_name update",
+    "phone_number":"082222222222",
+    "address":"address",
+    "description" : "description"
+}
+
+###
+DELETE http://localhost:3000/api/supplier/1

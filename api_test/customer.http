@@ -1,0 +1,22 @@
+GET http://localhost:3000/api/customer
+content-type: application/json
+
+###
+POST http://localhost:3000/api/customer
+content-type: application/json
+
+{
+    "customer_name" : "customer_name",
+    "phone_number":"081111111111"
+}
+###
+PUT http://localhost:3000/api/customer/2
+content-type: application/json
+
+{
+    "customer_name" : "customer_name update",
+    "phone_number":"081111111111"
+}
+
+###
+DELETE http://localhost:3000/api/customer/1
