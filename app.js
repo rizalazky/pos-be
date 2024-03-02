@@ -1,10 +1,12 @@
 const express= require('express')
 const app= express()
-const port = 3000;
+const cors = require('cors')
+const port = 4000;
 const apiRouter = require('./routes/api')
 const db= require('./models')
 const bodyParser = require('body-parser')
 
+app.use(cors())
 app.use(bodyParser.json());
 
 db.sequelize.sync()
