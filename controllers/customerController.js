@@ -9,6 +9,14 @@ exports.list = async (req,res,next)=>{
     res.json(data)
 }
 
+exports.detail = async (req,res,next)=>{
+    let id = req.params.id
+    let data = await CustomerModel.findByPk(id);
+    // let data =[]
+
+    res.json(data)
+}
+
 exports.add = async (req,res,next)=>{
     let data ={
         customer_name : req.body.customer_name,

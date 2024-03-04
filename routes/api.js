@@ -39,6 +39,7 @@ router.delete('/supplier/:id',supplierController.delete)
 
 // PRODUCT RESTFULL
 router.get('/customer',customerController.list)
+router.get('/customer/:id',customerController.detail)
 router.post('/customer',customerController.add)
 router.put('/customer/:id',customerController.update)
 router.delete('/customer/:id',customerController.delete)
