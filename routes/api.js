@@ -11,6 +11,7 @@ router.get('/',(req,res)=>{
 })
 // CATEGORY PRODUCT RESTFULL
 router.get('/category',categoryController.list)
+router.get('/category/:id',categoryController.list)
 router.post('/category',categoryController.add)
 router.put('/category/:id',categoryController.update)
 router.delete('/category/:id',categoryController.delete)

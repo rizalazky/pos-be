@@ -1,7 +1,9 @@
 const db = require('./../models');  
 const ProductCategory = db.ProductCategory;
 exports.list = async (req,res,next)=>{
-    let data = await ProductCategory.findAll();
+    let id = req.params.id;
+    console.log(id);
+    let data = !id ? await ProductCategory.findAll() : await ProductCategory.findByPk(id);
     // let data =[]
 
     res.json(data)
@@ -36,7 +38,7 @@ exports.update = async (req,res,next)=>{
 
 exports.delete = async (req,res,next)=>{
     let id = req.params.id;
-
+    console.log('DELETE',id)
     let execQuery = await ProductCategory.destroy({where :{id :id}});
     res.json({
         status : 'OK',
