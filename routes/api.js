@@ -26,7 +26,7 @@ router.delete('/unit/:id',unitController.delete)
 
 // PRODUCT RESTFULL
 router.get('/product',productController.list)
-router.get('/product/:id',productController.list)
+router.get('/product/:id',productController.detail)
 router.post('/product',productController.add)
 router.put('/product/:id',productController.update)
 router.delete('/product/:id',productController.delete)

@@ -22,6 +22,22 @@ exports.list = async (req,res,next)=>{
     res.json(data)
 }
 
+exports.detail = async (req,res,next) =>{
+    const id = req.params.id;
+    let data = await ProductModel.findByPk(id,{
+        include : [{
+            model : ProductCategoryModel,
+            required:true
+        },{
+            model : ProductUnitModel,
+            required:true
+        }]
+    });
+    // let data =[]
+
+    res.json(data)
+}
+
 exports.add = async (req,res,next)=>{
     let data ={
         product_name : req.body.product_name,

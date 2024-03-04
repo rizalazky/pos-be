@@ -2,7 +2,7 @@ GET http://localhost:4000/api/unit
 content-type: application/json
 
 ###
-GET http://localhost:4000/api/unit
+GET http://localhost:4000/api/unit/2
 content-type: application/json
 
 ###
