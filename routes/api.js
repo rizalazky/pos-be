@@ -18,6 +18,7 @@ router.delete('/category/:id',categoryController.delete)
 
 // UNII PRODUCT RESTFULL
 router.get('/unit',unitController.list)
+router.get('/unit/:id',unitController.list)
 router.post('/unit',unitController.add)
 router.put('/unit/:id',unitController.update)
 router.delete('/unit/:id',unitController.delete)
@@ -25,6 +26,7 @@ router.delete('/unit/:id',unitController.delete)
 
 // PRODUCT RESTFULL
 router.get('/product',productController.list)
+router.get('/product/:id',productController.list)
 router.post('/product',productController.add)
 router.put('/product/:id',productController.update)
 router.delete('/product/:id',productController.delete)
