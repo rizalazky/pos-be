@@ -1,6 +1,5 @@
 const db = require('./../models');  
 const ProductCategory = db.ProductCategory;
-
 exports.list = async (req,res,next)=>{
     let id = req.params.id;
     console.log(id);
