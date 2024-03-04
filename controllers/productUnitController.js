@@ -1,7 +1,10 @@
 const db = require('../models');  
 const ProductUnitModel = db.ProductUnit;
+
+
 exports.list = async (req,res,next)=>{
-    let data = await ProductUnitModel.findAll();
+    let id = req.params.id;
+    let data = !id ? await ProductUnitModel.findAll() : await ProductUnitModel.findByPk(id);
     // let data =[]
 
     res.json(data)
