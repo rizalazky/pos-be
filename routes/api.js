@@ -33,6 +33,7 @@ router.delete('/product/:id',productController.delete)
 
 // SUPLIER RESTFULL
 router.get('/supplier',supplierController.list)
+router.get('/supplier/:id',supplierController.detail)
 router.post('/supplier',supplierController.add)
 router.put('/supplier/:id',supplierController.update)
 router.delete('/supplier/:id',supplierController.delete)
