@@ -5,6 +5,8 @@ const unitController = require('../controllers/productUnitController');
 const productController = require('../controllers/productController');
 const supplierController = require('../controllers/supplierController');
 const customerController = require('../controllers/customerController');
+const roleController = require('../controllers/roleController');
+const userController = require('../controllers/userController');
 
 router.get('/',(req,res)=>{
     res.send('Hello API')
@@ -44,6 +46,20 @@ router.get('/customer/:id',customerController.detail)
 router.post('/customer',customerController.add)
 router.put('/customer/:id',customerController.update)
 router.delete('/customer/:id',customerController.delete)
+
+// ROLE RESTFULL
+router.get('/role',roleController.list)
+router.get('/role/:id',roleController.list)
+router.post('/role',roleController.add)
+router.put('/role/:id',roleController.update)
+router.delete('/role/:id',roleController.delete)
+
+// USER PRODUCT RESTFULL
+router.get('/user',userController.list)
+router.get('/user/:id',userController.list)
+router.post('/user',userController.add)
+router.put('/user/:id',userController.update)
+router.delete('/user/:id',userController.delete)
 
 
 
