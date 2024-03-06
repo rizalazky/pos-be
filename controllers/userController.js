@@ -1,19 +1,14 @@
 const db = require('../models');  
-const ProductModel = db.Product;
-const ProductCategoryModel = db.ProductCategory;
-const ProductUnitModel = db.ProductUnit;
+const UserModel = db.User;
+const RoleModel = db.Role;
 
-ProductModel.sync()
-ProductCategoryModel.sync()
-ProductUnitModel.sync()
+UserModel.sync()
+RoleModel.sync()
 
 exports.list = async (req,res,next)=>{
-    let data = await ProductModel.findAll({
+    let data = await UserModel.findAll({
         include : [{
-            model : ProductCategoryModel,
-            required:true
-        },{
-            model : ProductUnitModel,
+            model : RoleModel,
             required:true
         }]
     });
@@ -24,12 +19,9 @@ exports.list = async (req,res,next)=>{
 
 exports.detail = async (req,res,next) =>{
     const id = req.params.id;
-    let data = await ProductModel.findByPk(id,{
+    let data = await UserModel.findByPk(id,{
         include : [{
-            model : ProductCategoryModel,
-            required:true
-        },{
-            model : ProductUnitModel,
+            model : RoleModel,
             required:true
         }]
     });
@@ -40,16 +32,14 @@ exports.detail = async (req,res,next) =>{
 
 exports.add = async (req,res,next)=>{
     let data ={
-        product_name : req.body.product_name,
-        code : req.body.code,
-        category_id : req.body.category_id,
-        unit_id : req.body.unit_id,
-        price : req.body.price,
-        stock : req.body.stock,
-        description : req.body.description,
+        usernamae: req.body.usernamae,
+        password: req.body.password,
+        image: req.body.image,
+        role_id: req.body.role_id,
+        address: req.body.address
     }
 
-    let createData = await ProductModel.create(data)
+    let createData = await UserModel.create(data)
 
     res.json({
         status : 'OK',
@@ -60,16 +50,14 @@ exports.add = async (req,res,next)=>{
 exports.update = async (req,res,next)=>{
     let id = req.params.id;
     let data ={
-        product_name : req.body.product_name,
-        code : req.body.code,
-        category_id : req.body.category_id,
-        unit_id : req.body.unit_id,
-        price : req.body.price,
-        stock : req.body.stock,
-        description : req.body.description,
+        usernamae: req.body.usernamae,
+        password: req.body.password,
+        image: req.body.image,
+        role_id: req.body.role_id,
+        address: req.body.address
     }
 
-    let execQuery = await ProductModel.update(data,{where : {id : id}});
+    let execQuery = await UserModel.update(data,{where : {id : id}});
 
     res.json({
         status : 'OK',
@@ -80,7 +68,7 @@ exports.update = async (req,res,next)=>{
 exports.delete = async (req,res,next)=>{
     let id = req.params.id;
 
-    let execQuery = await ProductModel.destroy({where :{id :id}});
+    let execQuery = await UserModel.destroy({where :{id :id}});
     res.json({
         status : 'OK',
         data : execQuery
