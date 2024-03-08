@@ -34,9 +34,12 @@ exports.add = async (req,res,next)=>{
     let data ={
         usernamae: req.body.usernamae,
         password: req.body.password,
-        image: req.body.image,
         role_id: req.body.role_id,
         address: req.body.address
+    }
+
+    if(req.file){
+        data.image = req.file.originalname
     }
 
     let createData = await UserModel.create(data)
@@ -52,9 +55,12 @@ exports.update = async (req,res,next)=>{
     let data ={
         usernamae: req.body.usernamae,
         password: req.body.password,
-        image: req.body.image,
         role_id: req.body.role_id,
         address: req.body.address
+    }
+
+    if(req.file){
+        data.image = req.file.originalname
     }
 
     let execQuery = await UserModel.update(data,{where : {id : id}});

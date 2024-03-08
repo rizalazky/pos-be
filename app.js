@@ -9,6 +9,8 @@ const bodyParser = require('body-parser')
 app.use(cors())
 app.use(bodyParser.json());
 
+app.use('/uploads',express.static('uploads'))
+
 db.sequelize.sync()
 .then(() => {
     console.log("Synced db.");

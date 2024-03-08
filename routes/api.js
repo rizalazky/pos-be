@@ -7,6 +7,7 @@ const supplierController = require('../controllers/supplierController');
 const customerController = require('../controllers/customerController');
 const roleController = require('../controllers/roleController');
 const userController = require('../controllers/userController');
+const upload = require('../middlewares/upload');
 
 router.get('/',(req,res)=>{
     res.send('Hello API')
@@ -56,9 +57,9 @@ router.delete('/role/:id',roleController.delete)
 
 // USER PRODUCT RESTFULL
 router.get('/user',userController.list)
-router.get('/user/:id',userController.list)
-router.post('/user',userController.add)
-router.put('/user/:id',userController.update)
+router.get('/user/:id',userController.detail)
+router.post('/user',upload.single('image'),userController.add)
+router.put('/user/:id',upload.single('image'),userController.update)
 router.delete('/user/:id',userController.delete)
 
 
