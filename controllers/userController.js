@@ -2,6 +2,8 @@ const db = require('../models');
 const UserModel = db.User;
 const RoleModel = db.Role;
 
+const fs = require('fs')
+
 UserModel.sync()
 RoleModel.sync()
 
@@ -50,20 +52,32 @@ exports.add = async (req,res,next)=>{
     })
 }
 
+
+const deleteImage = async(imageName)=>{
+    let files = fs.readdirSync('uploads');
+    if(files.includes(imageName)){
+        fs.unlinkSync('uploads/'+ imageName);
+    }
+}
+
 exports.update = async (req,res,next)=>{
     let id = req.params.id;
-    let data ={
-        usernamae: req.body.usernamae,
-        password: req.body.password,
-        role_id: req.body.role_id,
-        address: req.body.address
-    }
+   
+    let user = await UserModel.findByPk(id);
 
     if(req.file){
-        data.image = req.file.originalname
+        let delImage = await deleteImage(user.image)
+        user.image = req.file.originalname
     }
+    user.usernamae = req.body.usernamae;
+    user.usernamae= req.body.usernamae;
+    user.password= req.body.password;
+    user.role_id= req.body.role_id;
+    user.address= req.body.address;
 
-    let execQuery = await UserModel.update(data,{where : {id : id}});
+    let execQuery = await user.save();
+
+    // let execQuery = await UserModel.update(data,{where : {id : id}});
 
     res.json({
         status : 'OK',
@@ -74,7 +88,11 @@ exports.update = async (req,res,next)=>{
 exports.delete = async (req,res,next)=>{
     let id = req.params.id;
 
-    let execQuery = await UserModel.destroy({where :{id :id}});
+    let user = await UserModel.findByPk(id);
+
+    let delImage = await deleteImage(user.image)
+       
+    let execQuery = await user.destroy();
     res.json({
         status : 'OK',
         data : execQuery
