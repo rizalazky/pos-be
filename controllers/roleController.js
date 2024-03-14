@@ -16,12 +16,21 @@ exports.add = async (req,res,next)=>{
         role_name : req.body.role_name
     }
 
-    let createData = await Role.create(data)
-
-    res.json({
-        status : 'OK',
-        data : createData
-    })
+    try {
+        
+        let createData = await Role.create(data)
+    
+        res.json({
+            status : 'OK',
+            data : createData
+        })
+    } catch (error) {
+        console.log('errrror',error.errors[0].message)
+        res.json({
+            status : 'FAIL',
+            errors : error.errors
+        })
+    }
 }
 
 exports.update = async (req,res,next)=>{

@@ -14,7 +14,16 @@ module.exports = (sequelize, DataTypes) => {
     }
   }
   Role.init({
-    role_name: DataTypes.STRING
+    role_name: {
+      type : DataTypes.STRING,
+      allowNull:false,
+      unique:true,
+      validate:{
+        notNull:{
+          msg :'Please enter Role name'
+        },
+      }
+    }
   }, {
     sequelize,
     modelName: 'Role',

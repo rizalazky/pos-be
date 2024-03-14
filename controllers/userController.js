@@ -48,12 +48,20 @@ exports.add = async (req,res,next)=>{
         data.image = req.file.originalname
     }
 
-    let createData = await UserModel.create(data)
-
-    res.json({
-        status : 'OK',
-        data : createData
-    })
+    try {
+        let createData = await UserModel.create(data)
+    
+        res.json({
+            status : 'OK',
+            data : createData
+        })
+        
+    } catch (error) {
+        res.json({
+            status : 'FAIL',
+            errors : error.errors
+        })
+    }
 }
 
 
