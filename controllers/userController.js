@@ -3,6 +3,8 @@ const UserModel = db.User;
 const RoleModel = db.Role;
 
 const fs = require('fs')
+const bcrypt= require('bcrypt')
+const saltRounds = 10;
 
 UserModel.sync()
 RoleModel.sync()
@@ -33,9 +35,11 @@ exports.detail = async (req,res,next) =>{
 }
 
 exports.add = async (req,res,next)=>{
+    const hashPassword = bcrypt.hashSync(req.body.usernamae, saltRounds);
+    // bcrypt.compareSync(myPlaintextPassword, hash); // true
     let data ={
         usernamae: req.body.usernamae,
-        password: req.body.password,
+        password: hashPassword,
         role_id: req.body.role_id,
         address: req.body.address
     }
@@ -70,8 +74,7 @@ exports.update = async (req,res,next)=>{
         user.image = req.file.originalname
     }
     user.usernamae = req.body.usernamae;
-    user.usernamae= req.body.usernamae;
-    user.password= req.body.password;
+    // user.password= req.body.password;
     user.role_id= req.body.role_id;
     user.address= req.body.address;
 
