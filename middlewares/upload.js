@@ -20,12 +20,13 @@ const upload = multer({
         // if(files.includes(file.originalname)){
         //     fs.unlinkSync('/uploads/'+ file.originalname);
         // }
-        
+      
         if (file.mimetype === 'image/jpeg' || file.mimetype === 'image/png') {
             cb(null, true)
         } else {
             cb(new Error("image should be png or jpeg extension"), false)
         }
+        
     },
     limits: {fileSize: maxSize},
 })

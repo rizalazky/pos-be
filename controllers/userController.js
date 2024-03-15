@@ -39,6 +39,7 @@ exports.add = async (req,res,next)=>{
     // bcrypt.compareSync(myPlaintextPassword, hash); // true
     let data ={
         usernamae: req.body.usernamae,
+        name:req.body.name,
         password: hashPassword,
         role_id: req.body.role_id,
         address: req.body.address
@@ -82,7 +83,7 @@ exports.update = async (req,res,next)=>{
         user.image = req.file.originalname
     }
     user.usernamae = req.body.usernamae;
-    // user.password= req.body.password;
+    user.name= req.body.name;
     user.role_id= req.body.role_id;
     user.address= req.body.address;
 
