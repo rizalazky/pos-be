@@ -7,6 +7,7 @@ const supplierController = require('../controllers/supplierController');
 const customerController = require('../controllers/customerController');
 const roleController = require('../controllers/roleController');
 const userController = require('../controllers/userController');
+const salesTransactionController = require('../controllers/salesTransactionController');
 const upload = require('../middlewares/upload');
 
 router.get('/',(req,res)=>{
@@ -55,12 +56,16 @@ router.post('/role',roleController.add)
 router.put('/role/:id',roleController.update)
 router.delete('/role/:id',roleController.delete)
 
-// USER PRODUCT RESTFULL
+// USER USER RESTFULL
 router.get('/user',userController.list)
 router.get('/user/:id',userController.detail)
 router.post('/user',upload.single('image'),userController.add)
 router.put('/user/:id',upload.single('image'),userController.update)
 router.delete('/user/:id',userController.delete)
+
+// SALES TRANSACTION
+router.post('/sales',salesTransactionController.processTransaction)
+
 
 
 
